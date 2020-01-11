@@ -1,8 +1,11 @@
 from flask import Flask, jsonify, render_template
+from flask_cors import CORS
 import pymongo
 
 # Creates the webpage app
 app = Flask(__name__)
+CORS(app)
+
 # Creates connection and connects the database to python
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
