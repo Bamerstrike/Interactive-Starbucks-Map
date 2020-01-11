@@ -1,6 +1,6 @@
 ﻿GeoName,LineCode,Description,2017:Q1,2017:Q2,2017:Q3,2017:Q4,Yearly Avg
 Alabama,3,Per capita personal income (dollars) 2/,40039,40240,40479,41079,40459.25
-Alaska *,3,Per capita personal income (dollars) 2/,56270,56425,56957,57527,56794.75
+Alaska,3,Per capita personal income (dollars) 2/,56270,56425,56957,57527,56794.75
 Arizona,3,Per capita personal income (dollars) 2/,41929,42160,42710,43128,42481.75
 Arkansas,3,Per capita personal income (dollars) 2/,41247,41398,41414,42011,41517.5
 California,3,Per capita personal income (dollars) 2/,59212,59701,60223,61474,60152.5
@@ -9,7 +9,7 @@ Connecticut,3,Per capita personal income (dollars) 2/,71088,71901,72290,73497,72
 Delaware,3,Per capita personal income (dollars) 2/,49860,49869,50565,51009,50325.75
 Florida,3,Per capita personal income (dollars) 2/,47122,47605,47984,48747,47864.5
 Georgia,3,Per capita personal income (dollars) 2/,44032,44242,44531,45317,44530.5
-Hawaii *,3,Per capita personal income (dollars) 2/,52627,52765,53266,53888,53136.5
+Hawaii,3,Per capita personal income (dollars) 2/,52627,52765,53266,53888,53136.5
 Idaho,3,Per capita personal income (dollars) 2/,41494,41933,42139,42787,42088.25
 Illinois,3,Per capita personal income (dollars) 2/,53150,53555,54137,54913,53938.75
 Indiana,3,Per capita personal income (dollars) 2/,44735,44975,45264,45888,45215.5
