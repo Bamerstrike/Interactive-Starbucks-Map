@@ -1,6 +1,7 @@
 // Json link
 var link = "http://localhost:5000/api";
 
+//Creating variables so they can be used globally.
 var Tabulator_table = [];
 var Selected_Data = [];
 
@@ -20,6 +21,7 @@ var circlesGroup;
 var Labor_Force;
 var AveragePersonalCapita;
 
+// From the api, get data and use data in this .json call
 d3.json(link,function(data){
 
     for (var i=0; i<states.length; i++){
@@ -70,12 +72,14 @@ d3.json(link,function(data){
     createGraph(Selected_Data);
 });
 
+// To select all data in tabular chart
 function Select_All(){
     table.selectRow();
     Selected_Data = table.getSelectedData();
     createGraph(Selected_Data);
 }
 
+// To select no data in tabular chart
 function Select_None(){
     table.deselectRow();
     Selected_Data = table.getSelectedData();
@@ -103,7 +107,6 @@ function createGraph(Selected_Data)
         chartHeight = svgHeight - margin.top - margin.bottom;
 
         
-
         var svg = d3.select("#graphs")
             .html("")
             .append("svg")
@@ -123,10 +126,10 @@ function createGraph(Selected_Data)
 
         xAxis = chartGroup.append("g")
             .classed("x-axis",true)
-            .attr("transform", `translate(0, ${chartHeight})`)
+            .attr("transform", `translate(0, ${chartHeight-12})`)
             .call(bottomAxis)
             .selectAll("text")
-            .attr("transform","rotate(90) translate(40,-15)");
+            .attr("transform","rotate(45) translate(25,0)");
         
         yAxis = chartGroup.append("g")
             .attr("transform", `translate(0,10)`)
@@ -141,63 +144,24 @@ function createGraph(Selected_Data)
             .attr("r", 3)
             .attr("fill", "blue")
             .attr("opacity", ".5")
-            // .attr("transform", `translate(0,-10)`)
 
         var xlabelsGroup = chartGroup.append("g")
             .attr("transform", `translate(${chartWidth/2}, ${chartHeight+20})`)
 
 
-        // var ylabelsGroup = chartGroup.append("g")
-        //     .attr("transform", `translate(${width}, ${height})`);
-
-        // Add X Axes
-        // Labor_Force = xlabelsGroup.append("text")
-        //     .attr("x", 0)
-        //     .attr("y", 40)
-        //     .attr("value", "Labor Force") 
-        //     .classed("active", true)
-        //     .text("Labor Force")
-
-        // AveragePersonalCapita = xlabelsGroup.append("text")
-        //     .attr("x", 0)
-        //     .attr("y", 40)
-        //     .attr("value", "Average Personal Capita") 
-        //     .classed("inactive", true)
-        //     .text("Average Personal Capita")
-
         // Add Y Axis
         chartGroup.append("text")
             .attr("transform","rotate(-90)")
             .attr("y",0-margin.left)
-            .attr("x",0-(chartHeight/2))
+            .attr("x",0-(chartHeight/1.5))
             .attr("dy","1em")
             .classed("axis-text",true)
             .text("# of Starbucks Stores")
             .attr("style","center");
-
-        // xlabelsGroup.selectAll("text")
-        //     .on("click",function(){
-        //         var value = d3.select(this).attr("value")
-
-        //         if(value !== chooseXAxis){
-        //             chooseXAxis=value;
-        //             xLinearScale = xScale(Selected_Data,chooseXAxis);
-        //             xAxis = renderXAxes(xLinearScale,xAxis);
-        //             circlesGroup = renderCircles(circlesGroup,xLinearScale,chooseXAxis);
-                    
-        //             if(chooseXAxis==="Labor Force"){
-        //                 Labor_Force.classed("active",true).classed("inactive",false);
-        //                 AveragePersonalCapita.classed("active",false).classed("inactive",true);
-        //             }
-
-        //             if(chooseXAxis==="Average Personal Capita"){
-        //                 AveragePersonalCapita.classed("active",true).classed("inactive",false);
-        //                 Labor_Force.classed("active",false).classed("inactive",true);
-
         }
 
 
-
+// Renders State labor force data
 function Select_Labor_Force(){
     chooseXAxis="Labor Force";
     xLinearScale = xScale(Selected_Data,chooseXAxis);
@@ -205,7 +169,7 @@ function Select_Labor_Force(){
     circlesGroup = renderCircles(circlesGroup,xLinearScale,chooseXAxis);
             
 }
-
+// Renders average personal capital data
 function Select_Personal_Capita(){
     chooseXAxis="Average Personal Capita";
     xLinearScale = xScale(Selected_Data,chooseXAxis);
@@ -235,7 +199,7 @@ function yScale(Data, chooseYAxis){
     return yTicks;
 }
 
-// function to update x axis 
+// Function to update x axis 
 function renderXAxes(newXScale, xAxis){
     var bottomAxis = d3.axisBottom(newXScale);
 
@@ -246,7 +210,7 @@ function renderXAxes(newXScale, xAxis){
     return xAxis;
 }
 
-// function to update y axis 
+// Function to update y axis 
 function renderYAxes(newYscale, yAxis){
     var leftAxis = d3.axisLeft(newYScale);
 
@@ -257,6 +221,7 @@ function renderYAxes(newYscale, yAxis){
     return yAxis;
 }
 
+// Creates the data on the graph
 function renderCircles(circlesGroup, newXScale,chooseXAxis){
     circlesGroup.transition()
         .duration(500)
