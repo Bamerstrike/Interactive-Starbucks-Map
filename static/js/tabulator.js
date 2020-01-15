@@ -11,8 +11,8 @@ var height = 400;
 var width = 500;
 var table;
 
-var Labor_visible_Data;
-var Personal_visible_Data = `style="visibility:hidden"`;
+var chartWidth;
+var chargHeight;
 
 var xAxis;
 var yAxis;
@@ -58,10 +58,7 @@ d3.json(link,function(data){
         // Choose what happens when I select Data
         rowClick: function(e,row){
             Selected_Data=[];
-            // console.log(row);
-            // console.log(row.getData().State);
             Selected_Data = table.getSelectedData();
-            // console.log(Selected_Data);
 
             var svg = d3.select("#graphs").html("")
             createGraph(Selected_Data);
@@ -92,18 +89,18 @@ function Select_None(){
 function createGraph(Selected_Data)    
     {     
 
-        var svgWidth = 460;
-        var svgHeight = 600;
+        var svgWidth = 480;
+        var svgHeight = 400;
 
         var margin = {
             top:10,
-            right:30,
-            bottom:30,
-            left:60
+            right:40,
+            bottom:40,
+            left:50
         };
 
-        var width = svgWidth - margin.left - margin.right;
-        var height = svgHeight - margin.top - margin.bottom;
+        chartWidth = svgWidth - margin.left - margin.right;
+        chartHeight = svgHeight - margin.top - margin.bottom;
 
         
 
@@ -117,54 +114,6 @@ function createGraph(Selected_Data)
             .attr("transform",`translate(${margin.left}, ${margin.top})`)
 
 
-        // //Set tick range for x axis
-        // function xScale(Data, chooseXAxis){
-        //     var xTicks = d3.scaleLinear()
-        //         .domain([d3.min(Selected_Data, d => d[chooseXAxis])*0.9, d3.max(Selected_Data, d => d[chooseXAxis])*1.1])
-        //         .range([0,width]);
-
-        //     return xTicks;
-        // }
-
-        // //Set tick range for y axis
-        // function yScale(Data, chooseYAxis){
-        //     var yTicks = d3.scaleLinear()
-        //         .domain([d3.min(Selected_Data, d => d[chooseYAxis])*0.9, d3.max(Selected_Data, d => d[chooseYAxis])*1.1])
-        //         .range([height,0]);
-
-        //     return yTicks;
-        // }
-
-        // // function to update x axis 
-        // function renderXAxes(newXScale, xAxis){
-        //     var bottomAxis = d3.axisBottom(newXScale);
-
-        //     xAxis.transition()
-        //         .duration(500)
-        //         .call(bottomAxis);
-            
-        //     return xAxis;
-        // }
-
-        // // function to update y axis 
-        // function renderYAxes(newYscale, yAxis){
-        //     var leftAxis = d3.axisLeft(newYScale);
-
-        //     YAxis.transition()
-        //         .duration(500)
-        //         .call(leftAxis);
-            
-        //     return yAxis;
-        // }
-
-        // function renderCircles(circlesGroup, newXScale,chooseXAxis){
-        //     circlesGroup.transition()
-        //         .duration(500)
-        //         .attr("cx",d=>newXScale(d[chooseXAxis]));
-            
-        //     return circlesGroup;
-        // }
-
         // Create x and y scale
         var xLinearScale = xScale(Selected_Data, chooseXAxis);
         var yLinearScale = yScale(Selected_Data, chooseYAxis);
@@ -174,8 +123,10 @@ function createGraph(Selected_Data)
 
         xAxis = chartGroup.append("g")
             .classed("x-axis",true)
-            .attr("transform", `translate(0, ${svgHeight})`)
-            .call(bottomAxis);
+            .attr("transform", `translate(0, ${chartHeight})`)
+            .call(bottomAxis)
+            .selectAll("text")
+            .attr("transform","rotate(90) translate(40,-15)");
         
         yAxis = chartGroup.append("g")
             .attr("transform", `translate(0,10)`)
@@ -190,35 +141,35 @@ function createGraph(Selected_Data)
             .attr("r", 3)
             .attr("fill", "blue")
             .attr("opacity", ".5")
-            .attr("transform", `translate(0,-15)`)
+            // .attr("transform", `translate(0,-10)`)
 
         var xlabelsGroup = chartGroup.append("g")
-            .attr("transform", `translate(${width/2}, ${height})`)
+            .attr("transform", `translate(${chartWidth/2}, ${chartHeight+20})`)
 
 
-        var ylabelsGroup = chartGroup.append("g")
-            .attr("transform", `translate(${width}, ${height})`);
+        // var ylabelsGroup = chartGroup.append("g")
+        //     .attr("transform", `translate(${width}, ${height})`);
 
         // Add X Axes
-        Labor_Force = xlabelsGroup.append("text")
-            .attr("x", 0)
-            .attr("y", 40)
-            .attr("value", "Labor Force") 
-            .classed("active", true)
-            .text("Labor Force")
+        // Labor_Force = xlabelsGroup.append("text")
+        //     .attr("x", 0)
+        //     .attr("y", 40)
+        //     .attr("value", "Labor Force") 
+        //     .classed("active", true)
+        //     .text("Labor Force")
 
-        AveragePersonalCapita = xlabelsGroup.append("text")
-            .attr("x", 0)
-            .attr("y", 40)
-            .attr("value", "Average Personal Capita") 
-            .classed("inactive", true)
-            .text("Average Personal Capita")
+        // AveragePersonalCapita = xlabelsGroup.append("text")
+        //     .attr("x", 0)
+        //     .attr("y", 40)
+        //     .attr("value", "Average Personal Capita") 
+        //     .classed("inactive", true)
+        //     .text("Average Personal Capita")
 
         // Add Y Axis
         chartGroup.append("text")
             .attr("transform","rotate(-90)")
-            .attr("y",-60)
-            .attr("x",-250)
+            .attr("y",0-margin.left)
+            .attr("x",0-(chartHeight/2))
             .attr("dy","1em")
             .classed("axis-text",true)
             .text("# of Starbucks Stores")
@@ -253,9 +204,6 @@ function Select_Labor_Force(){
     xAxis = renderXAxes(xLinearScale,xAxis);
     circlesGroup = renderCircles(circlesGroup,xLinearScale,chooseXAxis);
             
-    Labor_Force.attr("style","")
-    AveragePersonalCapita.attr("style",`"visibility:hidden"`)
-
 }
 
 function Select_Personal_Capita(){
@@ -273,7 +221,7 @@ function Select_Personal_Capita(){
 function xScale(Data, chooseXAxis){
     var xTicks = d3.scaleLinear()
         .domain([d3.min(Selected_Data, d => d[chooseXAxis])*0.9, d3.max(Selected_Data, d => d[chooseXAxis])*1.1])
-        .range([0,width]);
+        .range([0,chartWidth]);
 
     return xTicks;
 }
@@ -282,7 +230,7 @@ function xScale(Data, chooseXAxis){
 function yScale(Data, chooseYAxis){
     var yTicks = d3.scaleLinear()
         .domain([d3.min(Selected_Data, d => d[chooseYAxis])*0.9, d3.max(Selected_Data, d => d[chooseYAxis])*1.1])
-        .range([height+40,0]);
+        .range([chartHeight,0]);
 
     return yTicks;
 }
