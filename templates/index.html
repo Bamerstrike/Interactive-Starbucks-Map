@@ -45,7 +45,7 @@
       <div class = "row">
         <div class="col-md-12 jumbotron text-center" style ="background-color:#036635">
           <h1>Starbucks Coffee Study</h1>
-          <p>Do Starbucks open near working people?</p>
+          <p style="color:#fcbddc">Key Metrics: Average Personal Income and Labor Force</p>
         </div>
       </div>
 
@@ -59,13 +59,13 @@
       <div class = "row">
         
         <!-- Creates graphs with interactive buttons -->
-        <div class = "col-md-6">
+        <div class = "col-md-6" style='text-align:center;'>
           <div id = "graphs"></div>
-          <button type="button" class="btn btn-secondary btn-lg" onclick="Select_Labor_Force('Labor Force')">Labor Force</button>
-          <button type="button" class="btn btn-secondary btn-lg" onclick="Select_Personal_Capita('Average Personal Capita')">Personal Capita</button>
+          <button type="button" class="btn btn-secondary btn-lg" onclick="Select_Labor_Force('Labor Force (people)')">Labor Force</button>
+          <button type="button" class="btn btn-secondary btn-lg" onclick="Select_Personal_Capita('Average Personal Capita($)')">Personal Capita</button>
         </div>
 
-        <div class = "col-md-6">
+        <div class = "col-md-6" style='text-align:center;'>
           <div id = "tab_data"></div>
           <button type="button" class="btn btn-secondary btn-lg" onclick="Select_All()">Select All</button>
           <button type="button" class="btn btn-secondary btn-lg" onclick="Select_None()">Select None</button>

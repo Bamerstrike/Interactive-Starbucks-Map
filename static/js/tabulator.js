@@ -21,6 +21,8 @@ var circlesGroup;
 var Labor_Force;
 var AveragePersonalCapita;
 
+var bottomAxis;
+
 // From the api, get data and use data in this .json call
 d3.json(link,function(data){
 
@@ -121,7 +123,7 @@ function createGraph(Selected_Data)
         var xLinearScale = xScale(Selected_Data, chooseXAxis);
         var yLinearScale = yScale(Selected_Data, chooseYAxis);
 
-        var bottomAxis = d3.axisBottom(xLinearScale);
+        bottomAxis = d3.axisBottom(xLinearScale);
         var leftAxis = d3.axisLeft(yLinearScale);
 
         xAxis = chartGroup.append("g")
@@ -147,6 +149,22 @@ function createGraph(Selected_Data)
 
         var xlabelsGroup = chartGroup.append("g")
             .attr("transform", `translate(${chartWidth/2}, ${chartHeight+20})`)
+            .selectAll("text")
+            .attr("transform","rotate(45) translate(25,0)");
+
+        Labor_Force = xlabelsGroup.append("text")
+            .attr("x", 0)
+            .attr("y", 40)
+            .attr("value", "Labor Force") 
+            .classed("active", true)
+            .text("Labor Force")
+
+        AveragePersonalCapita = xlabelsGroup.append("text")
+            .attr("x", 0)
+            .attr("y", 40)
+            .attr("value", "Average Personal Capita") 
+            .classed("inactive", true)
+            .text("Average Personal Capita")
 
 
         // Add Y Axis
@@ -165,7 +183,7 @@ function createGraph(Selected_Data)
 function Select_Labor_Force(){
     chooseXAxis="Labor Force";
     xLinearScale = xScale(Selected_Data,chooseXAxis);
-    xAxis = renderXAxes(xLinearScale,xAxis);
+    xAxis = renderXAxes(xLinearScale,xAxis)
     circlesGroup = renderCircles(circlesGroup,xLinearScale,chooseXAxis);
             
 }
@@ -173,11 +191,8 @@ function Select_Labor_Force(){
 function Select_Personal_Capita(){
     chooseXAxis="Average Personal Capita";
     xLinearScale = xScale(Selected_Data,chooseXAxis);
-    xAxis = renderXAxes(xLinearScale,xAxis);
+    xAxis = renderXAxes(xLinearScale,xAxis)
     circlesGroup = renderCircles(circlesGroup,xLinearScale,chooseXAxis);
-            
-    Labor_Force.attr("style",`"visibility:hidden"`);
-    AveragePersonalCapita.attr("style","");
 }
 
 
@@ -203,9 +218,12 @@ function yScale(Data, chooseYAxis){
 function renderXAxes(newXScale, xAxis){
     var bottomAxis = d3.axisBottom(newXScale);
 
+    xAxis.selectAll("text")
+    .attr("transform","rotate(45) translate(25,0)");
     xAxis.transition()
         .duration(500)
         .call(bottomAxis);
+    createGraph(Selected_Data);
     
     return xAxis;
 }
