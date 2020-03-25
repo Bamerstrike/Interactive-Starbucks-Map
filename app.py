@@ -11,7 +11,7 @@ client = pymongo.MongoClient(conn)
 
 # Calls out starbucks database
 Starbucks_Information_db = client.StarbucksDB
-
+ 
 # Calls out the collection
 Information = Starbucks_Information_db.Information
 Store_Numbers = Starbucks_Information_db.Store_List
