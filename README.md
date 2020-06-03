@@ -29,39 +29,43 @@ Labor Force in each State: https://www.bls.gov/
 5. Findings: California has the largest ratio of average individual income per household compared to known working adults per capita. In addition, California also hosts the most Starbucks locations of the 50 states. However, strictly filtering by Average Personal Income per Capita, Connecticut ranks #1. 
 
 
+
+
 ### Screenshot of Key Target Metrics
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/metrics_focus.jpg">
 
 ### Screenshot of Excel dataset displaying economic data from 2012-2017
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/dataset_example_1.jpg">
 
 ### Screenshots of MongoDB code
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/dataset_example_2_mongodb.jpg">
 
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/dataset_example_3_mongodb.jpg">
 
 ### Screenshot of Entire Map
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_1.jpg">
 
 ### Screenshot of Map when a State is selected
-<img width=“500” alt=“” src="">
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_3.jpg">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_4.jpg">
 
 ### Screenshot of Map and Chart Objects
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_5.jpg">
 
-### Screenshot of Chart Objects Labor Force focused vs Personal Capital focused
-<img width=“500” alt=“” src="">
-<img width=“500” alt=“” src="">
+### Screenshot of Chart Objects Labor Force focused vs Personal Income per Capita focused
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_6_chartandlist_labor_force.jpg">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_6_chartandlist_personal_capital.jpg">
 
 ### State with Largest Labor Force
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_7_largest_labor_force.jpg">
 
-### State with Largest Average Personal Capital
-<img width=“500” alt=“” src="">
+### State with Largest Average Personal Income per Capita
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_8_largest_avg_personal_capital.jpg">
 
 ### States ordered by store count
-<img width=“500” alt=“” src="">
+<img width=“500” alt=“” src="https://github.com/Bamerstrike/Group_3_Project_2/blob/master/web_map_9_store_count.jpg">
+
+
 
 
 
